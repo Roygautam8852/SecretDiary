@@ -413,7 +413,59 @@
 
 /* ── Responsive ── */
 @media (max-width: 640px) {
+    .modal-overlay {
+        padding: 0.75rem;
+    }
+
+    .modal-content {
+        border-radius: 20px;
+    }
+
+    .modal-header {
+        padding: 1rem;
+    }
+
+    .modal-form {
+        padding: 1rem;
+        gap: 1.25rem;
+    }
+
     .form-grid {
         grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .modal-header h2 {
+        font-size: 1.1rem;
+    }
+
+    .modal-header p {
+        display: none;
+        /* Hide subtitle to save vertical space */
+    }
+
+    .emoji-bar {
+        gap: 0.35rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .emoji-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+    }
+
+    .modal-submit-btn {
+        padding: 0.85rem;
+    }
+}
+
+@media (max-height: 700px) {
+    .modal-header {
+        padding: 0.5rem 1rem;
+    }
+
+    .modal-form {
+        gap: 1rem;
     }
 }

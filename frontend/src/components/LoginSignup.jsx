@@ -3,7 +3,7 @@ import { X, Mail, Lock, User, Eye, EyeOff, Sparkles, Shield } from 'lucide-react
 import { AuthContext } from '../context/AuthContext';
 import './LoginSignup.css';
 
-const LoginSignup = ({ isOpen, onClose }) => {
+const LoginSignup = ({ isOpen, onClose, initialMode = 'login' }) => {
   const { login, signup, error: authError } = useContext(AuthContext);
 
   const [isSignup, setIsSignup] = useState(false);
@@ -19,14 +19,16 @@ const LoginSignup = ({ isOpen, onClose }) => {
 
   // Reset form whenever modal opens/closes or mode changes
   useEffect(() => {
-    if (!isOpen) {
+    if (isOpen) {
+      setIsSignup(initialMode === 'signup');
+    } else {
       setTimeout(() => {
         setFormData({ name: '', email: '', password: '', confirmPassword: '' });
         setError(''); setSuccess('');
         setShowPassword(false); setShowConfirmPassword(false);
       }, 300);
     }
-  }, [isOpen]);
+  }, [isOpen, initialMode]);
 
   // Close on Escape key
   useEffect(() => {

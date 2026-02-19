@@ -26,6 +26,26 @@
     flex-shrink: 0;
 }
 
+/* ── Back button (mobile only) ── */
+.chat-back-btn {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    color: var(--chat-muted);
+    cursor: pointer;
+    padding: 0.5rem;
+    margin-left: -0.5rem;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+
+.chat-back-btn:hover {
+    background: var(--chat-hover-bg);
+    color: var(--chat-accent);
+}
+
 .chat-header-avatar {
     width: 40px;
     height: 40px;
@@ -270,4 +290,31 @@
 
 .send-btn:disabled {
     cursor: default;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .chat-back-btn {
+        display: flex;
+    }
+
+    .chat-window-header {
+        padding: 0.75rem 1rem;
+    }
+
+    .chat-header-actions {
+        display: none;
+        /* Hide 📞/📹 on mobile to save space */
+    }
+
+    .messages-area {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .chat-header-status {
+        display: none;
+        /* Hide 'Online' text on very small screens */
+    }
 }

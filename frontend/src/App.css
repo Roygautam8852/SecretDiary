@@ -39,6 +39,13 @@
         padding-bottom: 80px;
         /* space for mobile bottom nav */
     }
+
+    .main-content-area.chats-mode {
+        padding: 0;
+        padding-bottom: 0;
+        height: calc(100vh - 56px);
+        /* mobile navbar is 56px */
+    }
 }
 
 /* ── Full-screen loading state (while session resolves) ── */

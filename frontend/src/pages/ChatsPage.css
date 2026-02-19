@@ -34,3 +34,33 @@
     margin: 0;
     color: var(--chat-muted);
 }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .chats-page {
+        position: relative;
+    }
+
+    /* If a chat is selected, hide the sidebar and fill the screen with the window */
+    .chats-page.has-selected .chat-sidebar {
+        display: none;
+    }
+
+    .chats-page.has-selected .chat-window {
+        display: flex;
+        width: 100%;
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        background: var(--chat-bg);
+    }
+
+    /* Hide the desktop empty state on mobile */
+    .chats-empty {
+        width: 100%;
+    }
+
+    .has-selected .chats-empty {
+        display: none;
+    }
+}

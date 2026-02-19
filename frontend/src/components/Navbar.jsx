@@ -216,6 +216,7 @@ const Navbar = ({ onConfessClick, searchQuery = '', onSearch }) => {
       {/* Login/Signup Modal */}
       <LoginSignup
         isOpen={isLoginOpen}
+        initialMode={loginMode}
         onClose={() => setIsLoginOpen(false)}
       />
     </>

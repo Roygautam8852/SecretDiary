@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Sparkles, Shield, Users, TrendingUp, MessageCircle, Lock } from 'lucide-react';
 import { authService } from '../services/api';
+import LoginSignup from '../components/LoginSignup';
 import './LandingPage.css';
 
 /* Official Google 'G' SVG ——————————————————————————————— */
 const GoogleIcon = () => (
-    <svg width="20" height="20" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+    <svg width="20" height="20" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" style={{ marginRight: '0px' }}>
         <path fill="#4285F4" d="M46.145 24.5c0-1.555-.14-3.05-.4-4.5H24v8.51h12.44c-.536 2.89-2.168 5.34-4.618 6.98v5.8h7.478c4.38-4.03 6.845-9.97 6.845-16.79z" />
         <path fill="#34A853" d="M24 47c6.24 0 11.47-2.07 15.3-5.61l-7.478-5.8c-2.07 1.39-4.72 2.21-7.822 2.21-6.015 0-11.11-4.06-12.93-9.52H3.39v5.99C7.21 42.54 15.02 47 24 47z" />
         <path fill="#FBBC05" d="M11.07 28.28A14.85 14.85 0 0 1 10.5 24c0-1.49.258-2.94.57-4.28v-5.99H3.39A23.94 23.94 0 0 0 0 24c0 3.87.928 7.53 2.572 10.77l8.498-6.49z" />
@@ -17,7 +18,21 @@ const handleGoogleLogin = () => {
     authService.googleLogin(); // redirects to /auth/google on the backend
 };
 
+
+
 const LandingPage = () => {
+    const [isLoginOpen, setIsLoginOpen] = useState(false);
+    const [loginMode, setLoginMode] = useState('login');
+
+    const openLogin = () => {
+        setLoginMode('login');
+        setIsLoginOpen(true);
+    };
+
+    const openSignup = () => {
+        setLoginMode('signup');
+        setIsLoginOpen(true);
+    };
     const features = [
         { icon: <Shield size={22} />, title: 'Fully Anonymous', desc: 'Your identity is always protected. No real names, ever.' },
         { icon: <Users size={22} />, title: 'Campus Community', desc: 'Connect with real students from your campus effortlessly.' },
@@ -34,10 +49,10 @@ const LandingPage = () => {
                     <div className="landing-brand-icon"><Sparkles size={18} /></div>
                     <span>WhisperWall</span>
                 </div>
-                {/* Single Google sign-in in the navbar */}
-                <button className="google-btn google-btn-sm" onClick={handleGoogleLogin}>
+                {/* Single sign-in in the navbar */}
+                <button className="land-btn btn-sm" onClick={handleGoogleLogin}>
                     <GoogleIcon />
-                    <span>Sign in with Google</span>
+                    <span>Sign In</span>
                 </button>
             </header>
 
@@ -64,14 +79,14 @@ const LandingPage = () => {
                         with your campus community — completely safe and judgment-free.
                     </p>
 
-                    {/* Primary Google CTA */}
+                    {/* Primary CTA */}
                     <div className="hero-ctas">
-                        <button className="google-btn google-btn-lg" onClick={handleGoogleLogin}>
+                        <button className="land-btn btn-lg" onClick={handleGoogleLogin}>
                             <GoogleIcon />
-                            <span>Continue with Google</span>
+                            <span>Join WhisperWall</span>
                         </button>
                         <p className="hero-cta-note">
-                            🔒 Your Google identity stays private — we only use it to verify you're real.
+                            🔒 Safe, secure, and 100% anonymous.
                         </p>
                     </div>
 
@@ -139,9 +154,9 @@ const LandingPage = () => {
                 <div className="land-blob land-blob-d" />
                 <h2>Ready to whisper your secret?</h2>
                 <p>Join thousands of students sharing anonymously. No sign of your real identity — ever.</p>
-                <button className="google-btn google-btn-white" onClick={handleGoogleLogin}>
+                <button className="land-btn btn-white" onClick={handleGoogleLogin}>
                     <GoogleIcon />
-                    <span>Sign in with Google — It's Free</span>
+                    <span>Get Started for Free</span>
                 </button>
             </section>
 
@@ -149,6 +164,12 @@ const LandingPage = () => {
             <footer className="landing-footer">
                 <span>© 2024 WhisperWall · Anonymous Campus Confessions</span>
             </footer>
+            {/* Login/Signup Modal */}
+            <LoginSignup
+                isOpen={isLoginOpen}
+                initialMode={loginMode}
+                onClose={() => setIsLoginOpen(false)}
+            />
         </div>
     );
 };

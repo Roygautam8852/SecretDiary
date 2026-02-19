@@ -29,7 +29,7 @@ const ChatsPage = () => {
     const currentContact = contacts.find((c) => c.id === selectedContact?.id) || selectedContact;
 
     return (
-        <div className="chats-page">
+        <div className={`chats-page ${currentContact ? 'has-selected' : ''}`}>
             <ChatSidebar
                 contacts={contacts}
                 selectedId={currentContact?.id}
@@ -41,6 +41,7 @@ const ChatsPage = () => {
                     key={currentContact.id}
                     contact={currentContact}
                     onUpdateContact={handleUpdateContact}
+                    onBack={() => setSelectedContact(null)}
                 />
             ) : (
                 <div className="chats-empty">

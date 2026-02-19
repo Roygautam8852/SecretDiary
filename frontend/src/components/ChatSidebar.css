@@ -158,3 +158,12 @@
     text-overflow: ellipsis;
     margin: 0;
 }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .chat-sidebar {
+        width: 100%;
+        min-width: 0;
+        border-right: none;
+    }
+}
