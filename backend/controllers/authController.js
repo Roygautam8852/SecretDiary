@@ -135,18 +135,32 @@ exports.logout = (req, res) => {
   });
 };
 
-// Google OAuth callback (will keep for future integration)
+// Google OAuth callback
 exports.googleCallback = async (profile, done) => {
   try {
-    let user = await User.findOne({ googleId: profile.id });
+    const googleEmail = profile.emails[0].value;
 
+    // 1. Try to find existing user by Google ID (returning user)
+    let user = await User.findOne({ googleId: profile.id });
     if (user) {
       return done(null, user);
     }
 
+    // 2. Check if a user with the same email already exists (e.g. signed up with email/password before)
+    user = await User.findOne({ email: googleEmail });
+    if (user) {
+      // Link their Google account to the existing profile
+      user.googleId = profile.id;
+      user.avatar = user.avatar || profile.photos[0]?.value || null;
+      user.authMethod = 'google';
+      await user.save();
+      return done(null, user);
+    }
+
+    // 3. Brand-new user — create account
     user = new User({
       googleId: profile.id,
-      email: profile.emails[0].value,
+      email: googleEmail,
       name: profile.displayName,
       avatar: profile.photos[0]?.value || null,
       displayName: `Anon#${Math.floor(Math.random() * 10000)}`,
@@ -159,3 +173,4 @@ exports.googleCallback = async (profile, done) => {
     return done(error, null);
   }
 };
+

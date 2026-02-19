@@ -1,50 +1,65 @@
-import React, { useState } from 'react';
-import { Heart, MessageCircle, Share2, MoreHorizontal } from 'lucide-react';
+import React, { useState, useContext } from 'react';
+import { Heart, MessageCircle, Share2 } from 'lucide-react';
+import { AuthContext } from '../context/AuthContext';
 import './ConfessionCard.css';
 
 const ConfessionCard = ({ data, onReact }) => {
-  const [isLiked, setIsLiked] = useState(data.isLiked || false);
-  const [likesCount, setLikesCount] = useState(data.likes);
+  const { user } = useContext(AuthContext);
+
+  // Normalize data from API or static JSON
+  let content = data.text || data.content || '';
+  const category = data.category || 'General';
+  const hashtags = data.hashtags || [];
+
+  // Clean content: Remove trailing hashtags that are already being shown as badges
+  // This prevents the "redundancy" the user complained about
+  const cleanContent = content.replace(/(#\w+\s*)+$/, '').trim();
+
+  const timestamp = data.createdAt || data.timestamp;
+  const authorName = data.userId?.displayName || data.author || 'Anonymous';
+  const authorAvatar = data.userId?.avatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${authorName}`;
+
+  // Reactions logic
+  const likesCount = data.reactions?.like || data.likes || 0;
+  const commentsCount = data.comments || 0;
+
+  // Check if current user liked this (for real API data)
+  const isInitiallyLiked = data.userReactions?.some(r => r.userId === user?._id && r.reactionType === 'like') || data.isLiked || false;
+
+  const [isLiked, setIsLiked] = useState(isInitiallyLiked);
+  const [localLikes, setLocalLikes] = useState(likesCount);
 
   const handleLike = () => {
     const newLiked = !isLiked;
     setIsLiked(newLiked);
-    setLikesCount(newLiked ? likesCount + 1 : likesCount - 1);
-    onReact(data.id, newLiked ? 'like' : 'unlike');
+    setLocalLikes(newLiked ? localLikes + 1 : localLikes - 1);
+    onReact(data._id || data.id, newLiked ? 'like' : 'unlike');
   };
 
-  const getCategoryColor = (cat) => {
-    switch (cat.toLowerCase()) {
-      case 'study': return 'bg-blue-100 text-blue-800';
-      case 'crush': return 'bg-pink-100 text-pink-800';
-      case 'funny': return 'bg-yellow-100 text-yellow-800';
-      case 'rant': return 'bg-red-100 text-red-800';
-      default: return 'bg-gray-100 text-gray-800';
-    }
-  };
+  const timeString = timestamp ? new Date(timestamp).toLocaleDateString() + ' • ' + new Date(timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'Just now';
 
   return (
     <div className="confession-card">
       <div className="card-header">
         <div className="user-info">
           <div className="avatar-circle">
-            {data.author.charAt(0)}
+            <img src={authorAvatar} alt="avatar" style={{ width: '100%', height: '100%', borderRadius: '50%' }} />
           </div>
           <div className="meta-info">
-            <h4>{data.author}</h4>
-            <span className="timestamp">{new Date(data.timestamp).toLocaleDateString()} • {new Date(data.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+            <h4>{authorName}</h4>
+            <span className="timestamp">{timeString}</span>
           </div>
         </div>
-        <span className={`tag ${data.category.toLowerCase()}`}>
-          {data.category}
+        <span className={`tag ${category.toLowerCase()}`}>
+          {category}
         </span>
       </div>
 
       <div className="card-body">
-        <p>{data.content}</p>
+        <p>{cleanContent}</p>
         <div className="hashtags">
-          {data.hashtags && data.hashtags.map((tag, idx) => (
-            <span key={idx} className="hashtag">{tag}</span>
+          {hashtags.map((tag, idx) => (
+            <span key={idx} className="hashtag">{tag.startsWith('#') ? tag : `#${tag}`}</span>
           ))}
         </div>
       </div>
@@ -56,12 +71,12 @@ const ConfessionCard = ({ data, onReact }) => {
             onClick={handleLike}
           >
             <Heart size={18} fill={isLiked ? "currentColor" : "none"} />
-            <span>{likesCount}</span>
+            <span>{localLikes}</span>
           </button>
 
           <button className="action-btn">
             <MessageCircle size={18} />
-            <span>{data.comments}</span>
+            <span>{commentsCount}</span>
           </button>
         </div>
 
@@ -74,3 +89,4 @@ const ConfessionCard = ({ data, onReact }) => {
 };
 
 export default ConfessionCard;
+

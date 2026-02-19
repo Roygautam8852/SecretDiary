@@ -52,7 +52,7 @@ const Sidebar = ({ activeTab, onTabChange, onCreateClick }) => {
                     {/* User Card — shown when logged in */}
                     {user ? (
                         <div className="user-card">
-                            <div className="user-card-info">
+                            <div className="user-avatar-container">
                                 {/* Avatar */}
                                 {user.avatar ? (
                                     <img src={user.avatar} alt={user.displayName} className="user-card-avatar" />
@@ -61,11 +61,16 @@ const Sidebar = ({ activeTab, onTabChange, onCreateClick }) => {
                                         {user.displayName?.charAt(0)?.toUpperCase() || 'U'}
                                     </div>
                                 )}
-                                {/* Name + Email */}
-                                <div className="user-card-text">
-                                    <p className="user-card-name">{user.displayName || 'Anonymous'}</p>
-                                    <p className="user-card-email">{user.email}</p>
+                                {/* Status below avatar */}
+                                <div className="user-status-sidebar">
+                                    <span className="status-dot-mini"></span>
+                                    <span className="status-text-mini">Online</span>
                                 </div>
+                            </div>
+                            {/* Name + Email */}
+                            <div className="user-card-text">
+                                <p className="user-card-name">{user.displayName || 'Anonymous'}</p>
+                                <p className="user-card-email">{user.email}</p>
                             </div>
                             {/* Logout Icon Button */}
                             <button className="user-card-logout" onClick={handleLogout} title="Logout">

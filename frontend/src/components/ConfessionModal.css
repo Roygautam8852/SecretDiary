@@ -1,212 +1,230 @@
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.35);
-  z-index: 999;
-  backdrop-filter: blur(2px);
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 1.5rem;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .modal-container {
-  background: var(--bg);
-  border-radius: var(--radius);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  z-index: 1000;
-  max-width: 600px;
-  width: 90%;
+  background: var(--glass-bg);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 32px;
+  box-shadow: 0 40px 100px -20px rgba(139, 92, 246, 0.3);
+  width: 100%;
+  max-width: 650px;
   max-height: 85vh;
   overflow-y: auto;
-  border: 1px solid var(--light-dark);
-  /* Animation is handled by Framer Motion */
+  animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .modal-header {
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid rgba(139, 92, 246, 0.1);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem;
-  border-bottom: 1px solid var(--light-dark);
   position: sticky;
   top: 0;
-  background: var(--bg);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
   z-index: 10;
 }
 
 .modal-header h2 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--text);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #1e1b4b;
   margin: 0;
+  letter-spacing: -0.5px;
 }
 
 .modal-close {
-  background: var(--bg-dark);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(139, 92, 246, 0.05);
+  color: #64748b;
   border: none;
-  color: var(--text-light);
-  width: 40px;
-  height: 40px;
-  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.3s ease;
-  flex-shrink: 0;
+  transition: all 0.2s ease;
 }
 
 .modal-close:hover {
-  background: var(--light-dark);
-  color: var(--text);
+  background: #fee2e2;
+  color: #ef4444;
+  transform: rotate(90deg);
 }
 
 .modal-form {
-  padding: 1.5rem;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1.5rem;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.75rem;
 }
 
 .form-group label {
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: var(--text);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #475569;
+  margin-left: 4px;
 }
 
 .form-group textarea,
 .form-group input,
 .form-group select {
-  background: var(--bg-dark);
-  border: 1px solid var(--light-dark);
-  border-radius: 6px;
-  padding: 0.75rem;
-  font-size: 0.95rem;
-  color: var(--text);
+  background: white;
+  border: 2px solid #f1f5f9;
+  border-radius: 16px;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  color: #1e293b;
   font-family: inherit;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 .form-group textarea:focus,
 .form-group input:focus,
 .form-group select:focus {
   outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-  background: var(--bg);
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.1);
 }
 
 .form-group textarea {
   resize: vertical;
-  min-height: 120px;
-  line-height: 1.5;
+  min-height: 140px;
+  line-height: 1.6;
 }
 
 .form-group small {
   font-size: 0.8rem;
-  color: var(--text-light);
+  color: #94a3b8;
+  font-weight: 500;
 }
 
 .char-count {
   text-align: right;
   font-size: 0.8rem;
-  color: var(--text-light);
+  color: #94a3b8;
+  font-weight: 600;
 }
 
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .error-message {
-  background: rgba(239, 68, 68, 0.1);
-  border: 1px solid var(--danger);
-  color: var(--danger);
-  padding: 0.75rem;
-  border-radius: 6px;
-  font-size: 0.9rem;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
   animation: slideInDown 0.3s ease-out;
 }
 
 .form-actions {
   display: flex;
-  gap: 1rem;
+  gap: 1.25rem;
   margin-top: 0.5rem;
 }
 
 .form-actions button {
-  padding: 0.75rem 1.5rem;
+  padding: 1rem;
   border: none;
-  border-radius: 6px;
-  font-weight: 600;
-  font-size: 0.95rem;
+  border-radius: 16px;
+  font-weight: 800;
+  font-size: 1rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  flex: 1;
 }
 
 .btn-cancel {
-  flex: 1;
-  background: var(--light-dark);
-  color: var(--text);
+  background: #f1f5f9;
+  color: #475569;
 }
 
 .btn-cancel:hover:not(:disabled) {
-  background: var(--light-dark);
-  opacity: 0.8;
+  background: #e2e8f0;
 }
 
 .btn-submit {
-  flex: 1;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
   color: white;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 10px 20px -5px rgba(139, 92, 246, 0.4);
 }
 
 .btn-submit:hover:not(:disabled) {
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px -5px rgba(139, 92, 246, 0.5);
 }
 
-.btn-submit:active:not(:disabled) {
-  transform: translateY(1px);
-}
-
-.form-actions button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+.btn-submit:disabled {
+  opacity: 0.5;
+  background: #94a3b8;
+  box-shadow: none;
 }
 
 /* Responsive */
 @media (max-width: 640px) {
   .modal-container {
     width: 95%;
-    max-height: 85vh;
   }
 
   .modal-header {
-    padding: 1rem;
+    padding: 1.25rem 1.5rem;
   }
 
   .modal-form {
-    padding: 1rem;
-    gap: 1rem;
+    padding: 1.5rem;
   }
 
   .form-row {
     grid-template-columns: 1fr;
-  }
-
-  .modal-header h2 {
-    font-size: 1.1rem;
-  }
-
-  .form-group textarea {
-    min-height: 100px;
   }
 }

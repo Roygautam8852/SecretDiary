@@ -57,61 +57,74 @@
 }
 
 /* ============================================================
-   SHARED BUTTONS
+   GOOGLE SIGN-IN BUTTON
    ============================================================ */
-.land-btn-outline {
-    padding: 0.5rem 1.2rem;
-    border-radius: 10px;
-    border: 1.5px solid #8b5cf6;
-    background: transparent;
-    color: #8b5cf6;
-    font-weight: 600;
-    font-size: 0.875rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    font-family: inherit;
-}
 
-.land-btn-outline:hover {
-    background: rgba(139, 92, 246, 0.07);
-}
-
-.land-btn-solid {
+/* Base Google button */
+.google-btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.45rem;
-    padding: 0.55rem 1.3rem;
+    justify-content: center;
+    gap: 0.65rem;
+    border-radius: 12px;
+    border: 1.5px solid #dadce0;
+    background: #fff;
+    color: #3c4043;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Google Sans', 'Inter', 'Segoe UI', sans-serif;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
+}
+
+.google-btn:hover {
+    background: #f8f9fa;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    transform: translateY(-1px);
+}
+
+.google-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Small — used in navbar */
+.google-btn-sm {
+    padding: 0.45rem 1rem;
+    font-size: 0.85rem;
     border-radius: 10px;
-    border: none;
-    background: linear-gradient(135deg, #8b5cf6, #6366f1);
-    color: #fff;
+}
+
+/* Large — used in hero */
+.google-btn-lg {
+    padding: 0.8rem 1.75rem;
+    font-size: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.google-btn-lg:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+}
+
+/* White-on-dark — used in CTA banner */
+.google-btn-white {
+    padding: 0.85rem 2rem;
+    font-size: 1rem;
+    border-radius: 12px;
+    background: #fff;
+    border-color: transparent;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    color: #1e1b4b;
     font-weight: 700;
-    font-size: 0.875rem;
-    cursor: pointer;
-    box-shadow: 0 4px 14px rgba(139, 92, 246, 0.35);
-    transition: all 0.25s ease;
-    font-family: inherit;
 }
 
-.land-btn-solid:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(139, 92, 246, 0.45);
+.google-btn-white:hover {
+    background: #f5f3ff;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
 }
 
-.land-btn-ghost {
-    background: none;
-    border: none;
-    color: #6b7280;
-    font-size: 0.875rem;
-    cursor: pointer;
-    transition: color 0.2s;
-    font-family: inherit;
-    font-weight: 500;
-}
-
-.land-btn-ghost:hover {
-    color: #8b5cf6;
-}
 
 /* ============================================================
    HERO SECTION
@@ -215,17 +228,21 @@
 
 .hero-ctas {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
+    gap: 0.85rem;
     margin-bottom: 4rem;
 }
 
-.hero-cta-primary {
-    padding: 0.8rem 2rem;
-    font-size: 1rem;
+.hero-cta-note {
+    font-size: 0.78rem;
+    color: #9ca3af;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
 }
+
 
 /* Float preview cards */
 .hero-preview {
@@ -427,18 +444,6 @@
     margin-right: auto;
 }
 
-.cta-big {
-    padding: 0.9rem 2.25rem;
-    font-size: 1.05rem;
-    background: #fff;
-    color: #7c3aed;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-}
-
-.cta-big:hover {
-    background: #f5f3ff;
-    color: #6d28d9;
-}
 
 /* ============================================================
    FOOTER

@@ -7,13 +7,12 @@ import {
 import LoginSignup from './LoginSignup';
 import './Navbar.css';
 
-const Navbar = ({ onConfessClick }) => {
+const Navbar = ({ onConfessClick, searchQuery = '', onSearch }) => {
   const { user, logout } = useContext(AuthContext);
 
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isNotifOpen, setIsNotifOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
   const [isScrolled, setIsScrolled] = useState(false);
   const [loginMode, setLoginMode] = useState('login');
 
@@ -87,12 +86,12 @@ const Navbar = ({ onConfessClick }) => {
               <input
                 type="text"
                 className="search-input"
-                placeholder="Search secrets, hashtags..."
+                placeholder="Search secrets, hashtags…"
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e) => onSearch && onSearch(e.target.value)}
               />
               {searchQuery && (
-                <button className="search-clear" onClick={() => setSearchQuery('')}>
+                <button className="search-clear" onClick={() => onSearch && onSearch('')}>
                   <X size={15} />
                 </button>
               )}
@@ -168,11 +167,12 @@ const Navbar = ({ onConfessClick }) => {
                       <div>
                         <p className="user-name">{user.displayName}</p>
                         <p className="user-email">{user.email}</p>
+                        <div className="user-status">
+                          <span className="status-dot"></span>
+                          <span className="status-text">Online</span>
+                        </div>
                       </div>
                     </div>
-                    <div className="dropdown-divider" />
-                    <button className="dropdown-item"><User size={15} /> Profile</button>
-                    <button className="dropdown-item"><Settings size={15} /> Settings</button>
                     <div className="dropdown-divider" />
                     <button className="dropdown-item danger" onClick={handleLogout}>
                       <LogOut size={15} /> Logout
