@@ -148,12 +148,22 @@ const Navbar = ({ onConfessClick, searchQuery = '', onSearch }) => {
                   onClick={() => setIsProfileOpen(!isProfileOpen)}
                 >
                   {user.avatar ? (
-                    <img src={user.avatar} alt={user.displayName} className="avatar-img" />
-                  ) : (
-                    <div className="avatar-initials">
-                      {user.displayName?.charAt(0)?.toUpperCase() || 'U'}
-                    </div>
-                  )}
+                    <img
+                      src={user.avatar}
+                      alt=""
+                      className="avatar-img"
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                        e.target.nextSibling && (e.target.nextSibling.style.display = 'flex');
+                      }}
+                    />
+                  ) : null}
+                  <div
+                    className="avatar-initials"
+                    style={user.avatar ? { display: 'none' } : {}}
+                  >
+                    {user.displayName?.charAt(0)?.toUpperCase() || 'U'}
+                  </div>
                 </button>
 
                 {isProfileOpen && (

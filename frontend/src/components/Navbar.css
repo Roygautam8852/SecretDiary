@@ -447,10 +447,13 @@
   justify-content: center;
   background: rgba(245, 243, 255, 0.7);
   border: 1.5px solid rgba(139, 92, 246, 0.15);
-  padding: 0.15rem;
+  padding: 0;
   border-radius: 50%;
   cursor: pointer;
   transition: all 0.25s ease;
+  overflow: hidden;
+  width: 36px;
+  height: 36px;
 }
 
 .user-avatar-btn:hover,
@@ -460,11 +463,14 @@
 }
 
 .avatar-img {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #fff;
+  border: none;
+  display: block;
+  color: transparent;
+  overflow: hidden;
 }
 
 .avatar-initials {

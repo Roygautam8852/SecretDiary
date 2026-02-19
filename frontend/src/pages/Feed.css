@@ -48,7 +48,17 @@
     -webkit-backdrop-filter: var(--glass-blur);
     box-shadow: var(--shadow-sm);
     padding: 0.6rem 2rem;
-    transition: all 0.3s ease;
+    /* No rounded corners on the filter bar */
+    border-radius: 0 !important;
+    /* No transition so hover doesn't animate */
+    transition: none !important;
+}
+
+/* Override .card hover for the filter bar — no lift, no glow */
+.feed-header.card:hover {
+    transform: none !important;
+    box-shadow: var(--shadow-sm) !important;
+    border-color: var(--border-color) !important;
 }
 
 

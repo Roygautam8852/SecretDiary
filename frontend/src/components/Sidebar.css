@@ -132,13 +132,13 @@
 .user-card {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     gap: 0.5rem;
     padding: 0.5rem 0.75rem;
     border-radius: 12px;
     border: 1px solid rgba(139, 92, 246, 0.12);
     background: rgba(245, 243, 255, 0.6);
     transition: background 0.2s ease;
+    overflow: hidden;
 }
 
 .user-card:hover {
@@ -163,6 +163,9 @@
     object-fit: cover;
     border: 2px solid #fff;
     flex-shrink: 0;
+    display: block;
+    color: transparent;
+    overflow: hidden;
 }
 
 /* Initials circle fallback */
@@ -183,6 +186,7 @@
 }
 
 .user-card-text {
+    flex: 1;
     min-width: 0;
     overflow: hidden;
 }
@@ -201,6 +205,9 @@
 
 .user-avatar-container {
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .user-status-sidebar {
