@@ -3,6 +3,25 @@
   align-items: center;
   margin-bottom: 2rem;
   padding: 0.75rem 1rem !important;
+  /* Glass effects moved from glass-panel */
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+  /* Sharp corners */
+  border-radius: 0 !important;
+  /* Disable hover detection on the bar itself */
+  pointer-events: none;
+  transition: none !important;
+}
+
+
+
+[data-theme="dark"] .filters-container {
+  background: rgba(15, 23, 42, 0.6);
+  border-color: rgba(255, 255, 255, 0.08);
+  border-radius: 0 !important;
 }
 
 .filters-row {
@@ -11,6 +30,8 @@
   align-items: center;
   width: 100%;
   gap: 1.5rem;
+  /* Re-enable pointer events for the content area */
+  pointer-events: auto;
 }
 
 .category-scroll {
@@ -30,7 +51,7 @@
   background: rgba(255, 255, 255, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.5);
   padding: 0.6rem 1.25rem;
-  border-radius: 50px;
+  border-radius: 0 !important;
   font-weight: 600;
   font-size: 0.9rem;
   color: var(--text-light);
@@ -44,6 +65,7 @@
   transform: translateY(-2px) scale(1.05);
   color: var(--primary);
   border-color: var(--primary-light);
+  border-radius: 0 !important;
 }
 
 .filter-pill.active {
@@ -51,11 +73,13 @@
   color: white;
   border-color: transparent;
   box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+  border-radius: 0 !important;
 }
 
 .filter-pill.active:hover {
   box-shadow: 0 6px 16px rgba(139, 92, 246, 0.4);
   transform: translateY(-2px) scale(1.05);
+  border-radius: 0 !important;
 }
 
 /* Custom Dropdown */
@@ -72,7 +96,7 @@
   padding: 0.75rem 1rem;
   background: rgba(255, 255, 255, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 50px;
+  border-radius: 0 !important;
   cursor: pointer;
   font-size: 0.9rem;
   font-weight: 600;
@@ -83,6 +107,7 @@
 .custom-select-trigger:hover {
   background: rgba(255, 255, 255, 0.8);
   border-color: var(--primary-light);
+  border-radius: 0 !important;
 }
 
 .chevron {
@@ -103,7 +128,7 @@
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-radius: 12px;
+  border-radius: 0 !important;
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
   padding: 0.5rem;
   z-index: 50;
@@ -113,7 +138,7 @@
 
 .custom-option {
   padding: 0.6rem 0.75rem;
-  border-radius: 8px;
+  border-radius: 0 !important;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -127,46 +152,48 @@
 .custom-option:hover {
   background: var(--light);
   color: var(--primary);
+  border-radius: 0 !important;
 }
 
 .custom-option.selected {
   background: rgba(139, 92, 246, 0.1);
   color: var(--primary);
   font-weight: 600;
+  border-radius: 0 !important;
 }
 
 .check-icon {
   color: var(--primary);
 }
 
-/* Dark Mode */
-[data-theme="dark"] .filters-container {
-  background: rgba(15, 23, 42, 0.6);
-  border-color: rgba(255, 255, 255, 0.05);
-}
-
+/* Dark Mode Overrides for Specific Elements */
 [data-theme="dark"] .filter-pill {
   background: rgba(255, 255, 255, 0.05);
   border-color: rgba(255, 255, 255, 0.1);
+  border-radius: 0 !important;
 }
 
 [data-theme="dark"] .filter-pill:hover {
   background: rgba(255, 255, 255, 0.1);
+  border-radius: 0 !important;
 }
 
 [data-theme="dark"] .custom-select-trigger {
   background: rgba(255, 255, 255, 0.05);
   border-color: rgba(255, 255, 255, 0.1);
   color: var(--text);
+  border-radius: 0 !important;
 }
 
 [data-theme="dark"] .custom-options {
   background: rgba(30, 41, 59, 0.9);
   border-color: rgba(255, 255, 255, 0.1);
+  border-radius: 0 !important;
 }
 
 [data-theme="dark"] .custom-option:hover {
   background: rgba(255, 255, 255, 0.05);
+  border-radius: 0 !important;
 }
 
 /* Responsive */

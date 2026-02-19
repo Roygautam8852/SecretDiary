@@ -444,11 +444,11 @@
 .user-avatar-btn {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  justify-content: center;
   background: rgba(245, 243, 255, 0.7);
   border: 1.5px solid rgba(139, 92, 246, 0.15);
-  padding: 0.2rem 0.55rem 0.2rem 0.2rem;
-  border-radius: 50px;
+  padding: 0.15rem;
+  border-radius: 50%;
   cursor: pointer;
   transition: all 0.25s ease;
 }
@@ -488,14 +488,6 @@
   font-size: 1rem;
 }
 
-.chevron-icon {
-  color: #8b5cf6;
-  transition: transform 0.3s ease;
-}
-
-.chevron-icon.flipped {
-  transform: rotate(180deg);
-}
 
 /* User Dropdown Panel */
 .user-dropdown {
@@ -652,4 +644,78 @@
     width: 280px;
     right: -30px;
   }
+}
+
+/* ============================================================
+   DARK MODE OVERRIDES FOR DROPDOWNS
+   ============================================================ */
+[data-theme='dark'] .user-dropdown,
+[data-theme='dark'] .notif-dropdown {
+  background: #1e293b;
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme='dark'] .user-avatar-btn,
+[data-theme='dark'] .icon-btn {
+  background: rgba(30, 41, 59, 0.6);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #8b5cf6;
+}
+
+[data-theme='dark'] .user-avatar-btn:hover,
+[data-theme='dark'] .user-avatar-btn.active,
+[data-theme='dark'] .icon-btn:hover,
+[data-theme='dark'] .icon-btn.active {
+  background: rgba(139, 92, 246, 0.15);
+  border-color: #8b5cf6;
+}
+
+
+[data-theme='dark'] .user-name,
+[data-theme='dark'] .notif-header span {
+  color: #f1f5f9;
+}
+
+[data-theme='dark'] .user-email,
+[data-theme='dark'] .notif-content span {
+  color: #94a3b8;
+}
+
+[data-theme='dark'] .dropdown-divider,
+[data-theme='dark'] .notif-header,
+[data-theme='dark'] .notif-footer,
+[data-theme='dark'] .notif-item {
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme='dark'] .dropdown-item {
+  color: #cbd5e1;
+}
+
+[data-theme='dark'] .dropdown-item:hover {
+  background: rgba(139, 92, 246, 0.15);
+  color: #8b5cf6;
+}
+
+[data-theme='dark'] .notif-item:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+[data-theme='dark'] .notif-item.unread {
+  background: rgba(139, 92, 246, 0.05);
+}
+
+[data-theme='dark'] .notif-content p {
+  color: #e2e8f0;
+}
+
+[data-theme='dark'] .mark-read-btn,
+[data-theme='dark'] .view-all-btn {
+  color: #a78bfa;
+}
+
+[data-theme='dark'] .avatar-img,
+[data-theme='dark'] .avatar-initials {
+  border-color: #1e293b;
 }

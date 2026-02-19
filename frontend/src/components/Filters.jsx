@@ -35,7 +35,7 @@ const Filters = ({ selectedCategory, selectedSort, onCategoryChange, onSortChang
   const currentSortLabel = sortOptions.find(opt => opt.value === selectedSort)?.label || 'Sort By';
 
   return (
-    <div className="filters-container glass-panel">
+    <div className="filters-container">
       <div className="filters-row">
         <div className="category-scroll">
           {categories.map((category) => (

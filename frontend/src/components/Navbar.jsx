@@ -2,7 +2,7 @@ import React, { useContext, useState, useRef, useEffect } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { ThemeContext } from '../context/ThemeContext';
 import {
-  Bell, LogIn, UserPlus, X, ChevronDown,
+  Bell, LogIn, UserPlus, X,
   User, Settings, LogOut, Mail, Sun, Moon
 } from 'lucide-react';
 import LoginSignup from './LoginSignup';
@@ -154,10 +154,6 @@ const Navbar = ({ onConfessClick, searchQuery = '', onSearch }) => {
                       {user.displayName?.charAt(0)?.toUpperCase() || 'U'}
                     </div>
                   )}
-                  <ChevronDown
-                    size={14}
-                    className={`chevron-icon ${isProfileOpen ? 'flipped' : ''}`}
-                  />
                 </button>
 
                 {isProfileOpen && (
