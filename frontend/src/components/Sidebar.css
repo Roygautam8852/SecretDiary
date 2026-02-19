@@ -16,6 +16,11 @@
     box-shadow: 4px 0 30px rgba(0, 0, 0, 0.02);
 }
 
+[data-theme='dark'] .sidebar-desktop {
+    background: rgba(15, 23, 42, 0.6);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
 .brand {
     display: flex;
     align-items: center;
@@ -92,9 +97,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.2);
-    transition: transform 0.2s;
+    box-shadow: 0 4px 6px -1px rgba(139, 92, 246, 0.2);
+    transition: all 0.2s ease;
     gap: 0.5rem;
+}
+
+[data-theme='dark'] .write-btn {
+    background: linear-gradient(135deg, #8b5cf6, #6366f1);
+    box-shadow: 0 8px 20px rgba(139, 92, 246, 0.2);
 }
 
 .write-btn:hover {
@@ -367,4 +377,37 @@
     .mobile-nav {
         display: flex;
     }
+}
+
+/* ───── Dark Mode Specifics ───── */
+[data-theme='dark'] .nav-item:hover,
+[data-theme='dark'] .nav-item.active {
+    background-color: rgba(139, 92, 246, 0.1);
+}
+
+[data-theme='dark'] .brand h1,
+[data-theme='dark'] .user-card-name {
+    color: #f1f5f9;
+}
+
+[data-theme='dark'] .user-card {
+    background: rgba(30, 41, 59, 0.4);
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme='dark'] .user-card:hover {
+    background: rgba(30, 41, 59, 0.7);
+}
+
+[data-theme='dark'] .mobile-nav {
+    background: #0f172a;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+[data-theme='dark'] .mobile-item {
+    color: #94a3b8;
+}
+
+[data-theme='dark'] .mobile-fab {
+    border-color: #0f172a;
 }

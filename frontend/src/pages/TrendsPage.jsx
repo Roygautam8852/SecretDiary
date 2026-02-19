@@ -8,11 +8,11 @@ import './TrendsPage.css';
 
 /* ── Category palette ─────────────────────────────────── */
 const CAT_COLORS = {
-    Study: { bg: '#dbeafe', bar: '#3b82f6', text: '#1d4ed8' },
-    Crush: { bg: '#fce7f3', bar: '#ec4899', text: '#be185d' },
-    Funny: { bg: '#fef9c3', bar: '#f59e0b', text: '#b45309' },
-    Rant: { bg: '#fee2e2', bar: '#ef4444', text: '#b91c1c' },
-    General: { bg: '#f3f4f6', bar: '#8b5cf6', text: '#6d28d9' },
+    Study: { bg: 'rgba(59, 130, 246, 0.15)', bar: '#3b82f6', text: '#3b82f6' },
+    Crush: { bg: 'rgba(236, 72, 153, 0.15)', bar: '#ec4899', text: '#ec4899' },
+    Funny: { bg: 'rgba(245, 158, 11, 0.15)', bar: '#f59e0b', text: '#f59e0b' },
+    Rant: { bg: 'rgba(239, 68, 68, 0.15)', bar: '#ef4444', text: '#ef4444' },
+    General: { bg: 'rgba(139, 92, 246, 0.15)', bar: '#8b5cf6', text: '#8b5cf6' },
 };
 
 const CAT_EMOJIS = { Study: '📚', Crush: '💘', Funny: '😂', Rant: '😤', General: '💬' };

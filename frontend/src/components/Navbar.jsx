@@ -1,14 +1,16 @@
 import React, { useContext, useState, useRef, useEffect } from 'react';
 import { AuthContext } from '../context/AuthContext';
+import { ThemeContext } from '../context/ThemeContext';
 import {
   Bell, LogIn, UserPlus, X, ChevronDown,
-  User, Settings, LogOut, Mail
+  User, Settings, LogOut, Mail, Sun, Moon
 } from 'lucide-react';
 import LoginSignup from './LoginSignup';
 import './Navbar.css';
 
 const Navbar = ({ onConfessClick, searchQuery = '', onSearch }) => {
   const { user, logout } = useContext(AuthContext);
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
@@ -192,6 +194,15 @@ const Navbar = ({ onConfessClick, searchQuery = '', onSearch }) => {
                 </button>
               </div>
             )}
+
+            {/* Theme Toggle */}
+            <button
+              className="theme-toggle-btn"
+              onClick={toggleTheme}
+              aria-label="Toggle Theme"
+            >
+              {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
+            </button>
           </div>
         </div>
       </nav>
