@@ -67,16 +67,21 @@ app.get('/health', (req, res) => {
 
 // Serve Frontend Static Files (Production)
 if (process.env.NODE_ENV === 'production') {
-  const frontendPath = path.join(__dirname, '../frontend/dist');
+  const frontendPath = path.resolve(__dirname, '..', 'frontend', 'dist');
   app.use(express.static(frontendPath));
 
-  // Catch-all route to serve index.html for React Router
   app.get('*', (req, res, next) => {
-    // If request is for an API route, don't serve index.html
     if (req.path.startsWith('/api')) {
       return next();
     }
-    res.sendFile(path.join(frontendPath, 'index.html'));
+
+    const indexPath = path.join(frontendPath, 'index.html');
+    res.sendFile(indexPath, (err) => {
+      if (err) {
+        console.error('Error sending index.html:', err.message);
+        res.status(500).send('Frontend files not found. Please check build logs.');
+      }
+    });
   });
 }
 
