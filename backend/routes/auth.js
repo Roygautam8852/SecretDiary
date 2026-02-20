@@ -30,7 +30,7 @@ router.get(
   }),
   (req, res) => {
     res.redirect(
-      `${process.env.FRONTEND_URL}/dashboard?authenticated=true`
+      `${process.env.FRONTEND_URL}/?authenticated=true`
     );
   }
 );

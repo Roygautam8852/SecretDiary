@@ -48,10 +48,11 @@ const Feed = ({ confessions, onReact, categories, activeCategory, onCategoryChan
             if (!q) return true;
 
             const query = q.toLowerCase();
-            const cat = (c.category || '').toLowerCase();
+            // Search in text or hashtags
+            const textMatch = (c.text || '').toLowerCase().includes(query);
+            const tagMatch = (c.hashtags || []).some(tag => tag.toLowerCase().includes(query));
 
-            // ONLY search if category vibe STARTS with the query
-            return cat.startsWith(query);
+            return textMatch || tagMatch;
         })
         .sort((a, b) => {
             const timeA = new Date(a.createdAt || a.timestamp);

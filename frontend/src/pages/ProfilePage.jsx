@@ -99,7 +99,7 @@ const ProfilePage = (props) => {
                     )}
                     <div className="ph-user-info">
                         <h2>{user?.displayName || 'Anonymous'}</h2>
-                        <p className="ph-email">{user?.email}</p>
+
                         <div className="ph-stats">
                             <div className="ph-stat">
                                 <span className="ph-stat-num">{confessions.length}</span>
