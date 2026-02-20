@@ -206,8 +206,8 @@
 
 .feed-list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    /* 3 cards per row */
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 cards per row */
     gap: 1.25rem;
     align-items: stretch;
     /* stretching cards to match tallest in row */

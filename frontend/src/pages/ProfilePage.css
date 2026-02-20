@@ -211,7 +211,7 @@
 /* ── Confession cards list ── */
 .ph-list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.25rem;
     align-items: stretch;
 }
@@ -227,7 +227,7 @@
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     display: flex;
     flex-direction: column;
-    height: 400px;
+    height: 300px;
 }
 
 .ph-card:hover {
