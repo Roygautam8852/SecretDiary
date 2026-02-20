@@ -18,7 +18,6 @@ const App = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [confessions, setConfessions] = useState([]);
   const [activeCategory, setActiveCategory] = useState('All');
-  const [sortOption, setSortOption] = useState('Newest');
   const [searchQuery, setSearchQuery] = useState('');
   const [refreshKey, setRefreshKey] = useState(0);
 
@@ -27,7 +26,7 @@ const App = () => {
     if (user) {
       const fetchConfessions = async () => {
         try {
-          const res = await confessionService.getAll(sortOption.toLowerCase(), activeCategory);
+          const res = await confessionService.getAll('newest', activeCategory);
           setConfessions(res.data.confessions || []);
         } catch (err) {
           console.error("Failed to fetch confessions:", err);
@@ -35,7 +34,7 @@ const App = () => {
       };
       fetchConfessions();
     }
-  }, [user, sortOption, activeCategory, refreshKey]);
+  }, [user, activeCategory, refreshKey]);
 
   // ── Auth Gate ──────────────────────────────────────────────
   if (loading) {
@@ -91,8 +90,6 @@ const App = () => {
             activeCategory={activeCategory}
             activeTab={activeTab}
             onCategoryChange={setActiveCategory}
-            sortOption={sortOption}
-            onSortChange={setSortOption}
             searchQuery={searchQuery}
           />
         );

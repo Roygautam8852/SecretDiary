@@ -14,8 +14,7 @@ import {
 } from 'lucide-react';
 import './Feed.css';
 
-const Feed = ({ confessions, onReact, categories, activeCategory, onCategoryChange, onSortChange, sortOption, searchQuery = '' }) => {
-    const [isSortOpen, setIsSortOpen] = useState(false);
+const Feed = ({ confessions, onReact, categories, activeCategory, onCategoryChange, searchQuery = '' }) => {
     const q = searchQuery.trim();
 
     // ── Manage scrollbar visibility ──────────────────────────
@@ -65,14 +64,10 @@ const Feed = ({ confessions, onReact, categories, activeCategory, onCategoryChan
         .sort((a, b) => {
             const timeA = new Date(a.createdAt || a.timestamp);
             const timeB = new Date(b.createdAt || b.timestamp);
-            if (sortOption === 'Newest') return timeB - timeA;
-            return timeA - timeB;
+            return timeB - timeA; // Default to newest first
         });
 
-    const sortOptions = [
-        { label: 'Newest First', value: 'Newest', icon: <ArrowDownCircle size={15} /> },
-        { label: 'Oldest First', value: 'Oldest', icon: <ArrowUpCircle size={15} /> },
-    ];
+
 
     return (
         <div className="feed-container">
@@ -92,34 +87,7 @@ const Feed = ({ confessions, onReact, categories, activeCategory, onCategoryChan
                         ))}
                     </div>
 
-                    <div className="sort-container">
-                        <button
-                            className="sort-trigger"
-                            onClick={() => setIsSortOpen(!isSortOpen)}
-                        >
-                            <Clock size={16} className="clock-icon" />
-                            <span>{sortOption === 'Newest' ? 'Newest First' : 'Oldest First'}</span>
-                            <ChevronDown size={16} className={`chevron ${isSortOpen ? 'open' : ''}`} />
-                        </button>
 
-                        {isSortOpen && (
-                            <div className="sort-menu">
-                                {sortOptions.map((opt) => (
-                                    <button
-                                        key={opt.value}
-                                        className={`sort-option ${sortOption === opt.value ? 'selected' : ''}`}
-                                        onClick={() => {
-                                            onSortChange(opt.value);
-                                            setIsSortOpen(false);
-                                        }}
-                                    >
-                                        <span className="opt-icon">{opt.icon}</span>
-                                        {opt.label}
-                                    </button>
-                                ))}
-                            </div>
-                        )}
-                    </div>
                 </div>
             </div>
 

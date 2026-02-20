@@ -118,9 +118,12 @@ const Sidebar = ({ activeTab, onTabChange, onCreateClick }) => {
                     <span>Profile</span>
                 </button>
 
-                <button className="mobile-item">
-                    <Settings size={24} />
-                    <span>More</span>
+                <button
+                    className={`mobile-item ${activeTab === 'chats' ? 'active' : ''}`}
+                    onClick={() => onTabChange('chats')}
+                >
+                    <MessageCircle size={24} />
+                    <span>Chats</span>
                 </button>
             </nav>
         </>

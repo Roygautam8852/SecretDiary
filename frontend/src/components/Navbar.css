@@ -40,6 +40,7 @@
   max-width: 1400px;
   margin: 0 auto;
   width: 100%;
+  position: relative;
 }
 
 /* ============================================================
@@ -88,9 +89,9 @@
 .navbar-search {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   flex: 1;
-  margin-right: 10rem;
+  transition: all 0.3s ease;
 }
 
 .search-wrapper {
@@ -260,7 +261,8 @@
 .notif-dropdown {
   position: absolute;
   top: calc(100% + 12px);
-  right: 0;
+  left: 50%;
+  transform: translateX(-85%);
   width: 320px;
   background: #fff;
   border-radius: 16px;
@@ -274,12 +276,12 @@
 @keyframes dropIn {
   from {
     opacity: 0;
-    transform: translateY(-8px) scale(0.97);
+    transform: translateX(-85%) translateY(-8px) scale(0.97);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateX(-85%) translateY(0) scale(1);
   }
 }
 
@@ -502,7 +504,8 @@
 .user-dropdown {
   position: absolute;
   top: calc(100% + 10px);
-  right: 0;
+  left: 50%;
+  transform: translateX(-85%);
   width: 230px;
   background: #fff;
   border-radius: 16px;
@@ -619,18 +622,55 @@
    RESPONSIVE
    ============================================================ */
 @media (max-width: 768px) {
+  .navbar {
+    height: auto;
+  }
+
   .navbar-inner {
-    padding: 0 1rem;
-    height: 56px;
+    padding: 0.5rem 1rem;
+    min-height: 60px;
+    height: auto;
     gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .brand-name {
     display: none;
   }
 
+  /* Search row on mobile — ensure it wraps to second row */
+  .navbar-search {
+    order: 3;
+    width: 100%;
+    flex-basis: 100%;
+    margin: 0;
+    padding: 0.25rem 0 0.75rem;
+    justify-content: center;
+  }
+
+  .navbar-brand {
+    order: 1;
+  }
+
+  .navbar-actions {
+    order: 2;
+  }
+
   .search-wrapper {
+    width: 100%;
     max-width: 100%;
+  }
+
+  .search-input {
+    height: 38px;
+    font-size: 0.85rem;
+    padding: 0 1rem;
+  }
+
+  .navbar-actions {
+    gap: 0.8rem;
   }
 
   .btn-login span,
@@ -641,17 +681,35 @@
   .btn-login,
   .btn-signup {
     padding: 0.5rem;
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
     justify-content: center;
     border-radius: 50%;
   }
 }
 
+@media (max-width: 1024px) and (min-width: 769px) {
+  .navbar-search {
+    margin-right: 5rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  .navbar-search {
+    justify-content: flex-end;
+    margin-right: 12rem;
+  }
+}
+
 @media (max-width: 480px) {
-  .notif-dropdown {
-    width: 280px;
-    right: -30px;
+
+  .notif-dropdown,
+  .user-dropdown {
+    width: calc(100vw - 2rem);
+    max-width: 320px;
+    left: 50%;
+    transform: translateX(-60%);
+    right: auto;
   }
 }
 
