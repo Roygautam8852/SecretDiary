@@ -77,7 +77,7 @@ const ProfilePage = ({ onRefresh, onEdit }) => {
             setInputSecretCode('');
 
             // Trigger global refresh so Feed is updated too
-            if (props.onRefresh) props.onRefresh();
+            if (onRefresh) onRefresh();
 
             alert("Confession deleted successfully.");
         } catch (err) {
